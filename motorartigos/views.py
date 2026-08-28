@@ -52,3 +52,7 @@ def detalhe_comercio(request, id):
     return render(request, 'motorartigos/banca.html', {'artigo': comercio})
 def mostrar_dashboard(request):
     return render(request, 'motorartigos/dashboard.html')
+
+def criar_grafico_pizza():
+    pass
+    

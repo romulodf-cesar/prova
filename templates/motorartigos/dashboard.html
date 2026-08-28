@@ -2,78 +2,124 @@
 {% load static %}
 
 {% block content %}
+<div class="container-fluid py-4 text-light px-4">
 
-<div class="container py-4 text-light">
+    <!-- Título do Dashboard -->
+    <h2 class="h5 fw-bold mb-4 text-white">Dashboard de Métricas & Análises</h2>
 
-    <!-- Seção de Cards Totalizadores e Métricas de Dispersão -->
-    <div class="row g-3">
+    <!-- Cards Totalizadores -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="card bg-dark text-light border-secondary shadow-sm">
+                <div class="card-body text-center py-2 px-3">
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Total Acessos</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">110</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="card bg-dark text-light border-secondary shadow-sm">
+                <div class="card-body text-center py-2 px-3">
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Média de Idade</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ media_idade|default:"28" }} <small class="fs-6 text-white-50">anos</small></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="card bg-dark text-light border-secondary shadow-sm">
+                <div class="card-body text-center py-2 px-3">
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Desvio Padrão</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">&plusmn;{{ desvio_padrao|default:"4.2" }} <small class="fs-6 text-white-50">anos</small></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="card bg-dark text-light border-secondary shadow-sm">
+                <div class="card-body text-center py-2 px-3">
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Amplitude</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ amplitude|default:"40" }} <small class="fs-6 text-white-50">anos</small></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="card bg-dark text-light border-secondary shadow-sm">
+                <div class="card-body text-center py-2 px-3">
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Variância</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ variancia|default:"17.6" }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid dos Gráficos -->
+    <div class="row g-4">
         
-        <!-- Total Acessos -->
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="card bg-dark text-light border-secondary shadow-sm">
-                <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">
-                        Total Acessos
-                    </span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">
-                        110
-                    </h4>
+        <!-- 1. Gráfico de Pizza: Gênero -->
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card bg-dark text-light border-secondary shadow-sm h-100">
+                <div class="card-header bg-transparent border-secondary py-2">
+                    <h6 class="card-title fw-semibold mb-0 text-white fs-6">Distribuição por Gênero (%)</h6>
+                </div>
+                <div class="card-body d-flex align-items-center justify-content-start p-3">
+                    <div style="position: relative; height: 180px; width: 100%;">
+                        <canvas id="graficoGenero"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Média de Idade -->
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="card bg-dark text-light border-secondary shadow-sm">
-                <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">
-                        Média de Idade
-                    </span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">
-                        {{ media_idade|default:"28" }} <small class="fs-6 text-white-50">anos</small>
-                    </h4>
+        <!-- 2. Gráfico de Linha: Evolução de Acessos -->
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card bg-dark text-light border-secondary shadow-sm h-100">
+                <div class="card-header bg-transparent border-secondary py-2">
+                    <h6 class="card-title fw-semibold mb-0 text-white fs-6">Evolução de Acessos (Últimos Dias)</h6>
+                </div>
+                <div class="card-body p-3">
+                    <div style="position: relative; height: 180px; width: 100%;">
+                        <canvas id="graficoLinha"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Desvio Padrão (Sempre ao lado da média) -->
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="card bg-dark text-light border-secondary shadow-sm">
-                <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">
-                        Desvio Padrão
-                    </span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">
-                        &plusmn;{{ desvio_padrao|default:"4.2" }} <small class="fs-6 text-white-50">anos</small>
-                    </h4>
+        <!-- 3. Gráfico de Barras: Faixa Etária -->
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card bg-dark text-light border-secondary shadow-sm h-100">
+                <div class="card-header bg-transparent border-secondary py-2">
+                    <h6 class="card-title fw-semibold mb-0 text-white fs-6">Usuários por Faixa Etária</h6>
+                </div>
+                <div class="card-body p-3">
+                    <div style="position: relative; height: 180px; width: 100%;">
+                        <canvas id="graficoBarra"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Amplitude de Idade -->
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="card bg-dark text-light border-secondary shadow-sm">
-                <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">
-                        Amplitude
-                    </span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">
-                        {{ amplitude|default:"40" }} <small class="fs-6 text-white-50">anos</small>
-                    </h4>
+        <!-- 4. Dispersão + Regressão Linear: Idade vs Acessos -->
+        <div class="col-12 col-md-6 col-xl-6">
+            <div class="card bg-dark text-light border-secondary shadow-sm h-100">
+                <div class="card-header bg-transparent border-secondary py-2">
+                    <h6 class="card-title fw-semibold mb-0 text-white fs-6">Dispersão & Regressão: Idade vs Acessos</h6>
+                </div>
+                <div class="card-body p-3">
+                    <div style="position: relative; height: 200px; width: 100%;">
+                        <canvas id="graficoDispersaoRegressao"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Variância de Idade -->
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="card bg-dark text-light border-secondary shadow-sm">
-                <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">
-                        Variância
-                    </span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">
-                        {{ variancia|default:"17.6" }}
-                    </h4>
+        <!-- 5. Boxplot (Amplitude / Quartis de Idade) -->
+        <div class="col-12 col-md-6 col-xl-6">
+            <div class="card bg-dark text-light border-secondary shadow-sm h-100">
+                <div class="card-header bg-transparent border-secondary py-2">
+                    <h6 class="card-title fw-semibold mb-0 text-white fs-6">Distribuição de Idade (Mín, Q1, Média, Q3, Máx)</h6>
+                </div>
+                <div class="card-body p-3">
+                    <div style="position: relative; height: 200px; width: 100%;">
+                        <canvas id="graficoBoxplot"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,4 +127,149 @@
     </div>
 </div>
 
+<script>
+    // Configurações Globais de Tema Escuro do Chart.js
+    Chart.defaults.color = '#9ca3af';
+    Chart.defaults.borderColor = '#374151';
+
+    // 1. Gráfico de Pizza (Gênero)
+    new Chart(document.getElementById('graficoGenero'), {
+        type: 'pie',
+        data: {
+            labels: ['Feminino', 'Masculino', 'Não-binário', 'Outro / N.I.'],
+            datasets: [{
+                data: [52, 43, 3, 2],
+                backgroundColor: ['#ec4899', '#3b82f6', '#a855f7', '#6b7280'],
+                borderColor: '#1f2937',
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: { color: '#e5e7eb', boxWidth: 10, font: { size: 10 } }
+                }
+            }
+        }
+    });
+
+    // 2. Gráfico de Linha (Acessos)
+    new Chart(document.getElementById('graficoLinha'), {
+        type: 'line',
+        data: {
+            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            datasets: [{
+                label: 'Acessos',
+                data: [12, 19, 15, 25, 22, 30, 28],
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    // 3. Gráfico de Barras (Faixa Etária)
+    new Chart(document.getElementById('graficoBarra'), {
+        type: 'bar',
+        data: {
+            labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
+            datasets: [{
+                label: 'Usuários',
+                data: [25, 45, 20, 12, 8],
+                backgroundColor: '#10b981',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    // 4. Dispersão + Linha de Regressão Linear
+    new Chart(document.getElementById('graficoDispersaoRegressao'), {
+        data: {
+            datasets: [
+                {
+                    type: 'scatter',
+                    label: 'Usuários (Idade x Acessos)',
+                    data: [
+                        { x: 18, y: 5 }, { x: 22, y: 12 }, { x: 25, y: 18 },
+                        { x: 28, y: 22 }, { x: 32, y: 15 }, { x: 38, y: 28 },
+                        { x: 42, y: 25 }, { x: 50, y: 32 }, { x: 58, y: 38 }
+                    ],
+                    backgroundColor: '#ec4899'
+                },
+                {
+                    type: 'line',
+                    label: 'Tendência (Regressão Linear)',
+                    data: [
+                        { x: 18, y: 7 },
+                        { x: 58, y: 37 }
+                    ],
+                    borderColor: '#f59e0b',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { title: { display: true, text: 'Idade', color: '#9ca3af' } },
+                y: { title: { display: true, text: 'Acessos acumulados', color: '#9ca3af' } }
+            }
+        }
+    });
+
+    // 5. Boxplot Simulado (Barra Flutuante para Mín, Q1, Q3, Máx)
+    new Chart(document.getElementById('graficoBoxplot'), {
+        type: 'bar',
+        data: {
+            labels: ['Geral', 'Feminino', 'Masculino'],
+            datasets: [
+                {
+                    label: 'Amplitude (Min ao Max)',
+                    data: [[18, 58], [20, 52], [18, 58]], // Exibe intervalo Mínimo e Máximo
+                    backgroundColor: 'rgba(156, 163, 175, 0.2)',
+                    borderColor: '#9ca3af',
+                    borderWidth: 1,
+                    barPercentage: 0.3
+                },
+                {
+                    label: 'Caixa IQR (Q1 ao Q3)',
+                    data: [[24, 32], [22, 30], [25, 35]], // Exibe o intervalo interquartil
+                    backgroundColor: '#8b5cf6',
+                    borderRadius: 4,
+                    barPercentage: 0.5
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: { boxWidth: 12, font: { size: 11 } }
+                }
+            },
+            scales: {
+                y: { title: { display: true, text: 'Idade (anos)', color: '#9ca3af' } }
+            }
+        }
+    });
+</script>
 {% endblock %}
