@@ -5,14 +5,15 @@
 <div class="container-fluid py-4 text-light px-4">
 
     <!-- Título do Dashboard -->
-    <h2 class="h5 fw-bold mb-4 text-white">Dashboard de Métricas & Análises</h2>
+    <h2 class="h5 fw-bold mb-4 text-white">Dashboard de Métricas & Análises (Testando Upload)</h2>
 
     <!-- Cards Totalizadores -->
     <div class="row g-3 mb-4">
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <div class="card bg-dark text-light border-secondary shadow-sm">
                 <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Total Acessos</span>
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold"
+                        style="font-size: 0.7rem;">Total Acessos</span>
                     <h4 class="card-title fw-bold mb-0 text-white mt-1">110</h4>
                 </div>
             </div>
@@ -20,31 +21,38 @@
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <div class="card bg-dark text-light border-secondary shadow-sm">
                 <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Média de Idade</span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ media_idade|default:"28" }} <small class="fs-6 text-white-50">anos</small></h4>
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold"
+                        style="font-size: 0.7rem;">Média de Idade</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ media_idade|default:"28" }} <small
+                            class="fs-6 text-white-50">anos</small></h4>
                 </div>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <div class="card bg-dark text-light border-secondary shadow-sm">
                 <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Desvio Padrão</span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">&plusmn;{{ desvio_padrao|default:"4.2" }} <small class="fs-6 text-white-50">anos</small></h4>
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold"
+                        style="font-size: 0.7rem;">Desvio Padrão</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">&plusmn;{{ desvio_padrao|default:"4.2" }} <small
+                            class="fs-6 text-white-50">anos</small></h4>
                 </div>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <div class="card bg-dark text-light border-secondary shadow-sm">
                 <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Amplitude</span>
-                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ amplitude|default:"40" }} <small class="fs-6 text-white-50">anos</small></h4>
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold"
+                        style="font-size: 0.7rem;">Amplitude</span>
+                    <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ amplitude|default:"40" }} <small
+                            class="fs-6 text-white-50">anos</small></h4>
                 </div>
             </div>
         </div>
         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <div class="card bg-dark text-light border-secondary shadow-sm">
                 <div class="card-body text-center py-2 px-3">
-                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold" style="font-size: 0.7rem;">Variância</span>
+                    <span class="card-subtitle text-uppercase text-white-50 fw-semibold"
+                        style="font-size: 0.7rem;">Variância</span>
                     <h4 class="card-title fw-bold mb-0 text-white mt-1">{{ variancia|default:"17.6" }}</h4>
                 </div>
             </div>
@@ -53,7 +61,7 @@
 
     <!-- Grid dos Gráficos -->
     <div class="row g-4">
-        
+
         <!-- 1. Gráfico de Pizza: Gênero -->
         <div class="col-12 col-md-6 col-xl-4">
             <div class="card bg-dark text-light border-secondary shadow-sm h-100">
@@ -110,7 +118,7 @@
             </div>
         </div>
 
-       
+
     </div>
 </div>
 
@@ -221,6 +229,6 @@
         }
     });
 
-   
+
 </script>
 {% endblock %}
