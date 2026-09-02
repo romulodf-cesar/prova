@@ -10,24 +10,29 @@
   <section style="margin-bottom: 40px;">
     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
       <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 700; margin: 0;">Destaques da Semana 🔥</h4>
-      <span style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.72rem; font-weight: 600; padding: 2px 10px; border-radius: 999px;">Recomendados</span>
+      <span
+        style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.72rem; font-weight: 600; padding: 2px 10px; border-radius: 999px;">Recomendados
+        Caramba</span>
     </div>
 
     <!-- Grid de Cards -->
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; width: 100%;">
       {% for artigo in artigos_recentes %}
-      <article style="background-color: #111c30; border: 1px solid #1e2640; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
-        
+      <article
+        style="background-color: #111c30; border: 1px solid #1e2640; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+
         <!-- Banner Superior (Trava de Tamanho da Imagem) -->
         <div style="position: relative; width: 100%; height: 160px; background-color: #0f172a; overflow: hidden;">
           {% if artigo.foto %}
-            <img src="{{ artigo.foto.url }}" alt="{{ artigo.titulo }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+          <img src="{{ artigo.foto.url }}" alt="{{ artigo.titulo }}"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
           {% else %}
-            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1e293b, #334155);"></div>
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1e293b, #334155);"></div>
           {% endif %}
-          
+
           <!-- Tag Sobreposta -->
-          <span style="position: absolute; top: 10px; right: 10px; background-color: rgba(11, 15, 25, 0.85); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(4px);">
+          <span
+            style="position: absolute; top: 10px; right: 10px; background-color: rgba(11, 15, 25, 0.85); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(4px);">
             {{ artigo.get_nivel_display|default:"galeria de rua" }}
           </span>
         </div>
@@ -35,23 +40,26 @@
         <!-- Conteúdo do Card -->
         <div style="padding: 16px; display: flex; flex-direction: column; flex: 1;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <span style="color: #60a5fa; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;">
+            <span
+              style="color: #60a5fa; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;">
               {{ artigo.id_fk_eixo.nome|default:"MODA JOVEM" }}
             </span>
             <span style="color: #10b981; font-size: 0.72rem; font-weight: 600;">• Aberto</span>
           </div>
 
-          <h5 style="color: #ffffff; font-size: 1.05rem; font-weight: 700; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          <h5
+            style="color: #ffffff; font-size: 1.05rem; font-weight: 700; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
             {{ artigo.titulo }}
           </h5>
-          
+
           <p style="color: #9ca3af; font-size: 0.8rem; margin: 0 0 16px 0;">
             📍 {{ artigo.id_fk_responsavel.nome|default:"Vanessa da Mata" }}
           </p>
 
           <!-- Botão WhatsApp -->
           <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid #1e2640;">
-            <a href="{% url 'detalhe_comercio' artigo.id %}" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 8px 12px; border-radius: 6px; box-sizing: border-box; width: 100%;">
+            <a href="{% url 'detalhe_comercio' artigo.id %}"
+              style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 8px 12px; border-radius: 6px; box-sizing: border-box; width: 100%;">
               <span>Ver Ofertas & WhatsApp</span>
               <span aria-hidden="true">→</span>
             </a>
@@ -67,23 +75,27 @@
   <!-- SEÇÃO 2: Guia de Comércios & Profissionais -->
   <section style="margin-bottom: 40px;">
     <div style="display: flex; align-items: center; margin-bottom: 16px;">
-      <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 700; margin: 0;">Guia de Comércios & Profissionais</h4>
+      <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 700; margin: 0;">Guia de Comércios & Profissionais
+      </h4>
     </div>
 
     <!-- Grid de Cards -->
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; width: 100%;">
       {% for artigo in artigos %}
-      <article style="background-color: #111c30; border: 1px solid #1e2640; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
-        
+      <article
+        style="background-color: #111c30; border: 1px solid #1e2640; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+
         <!-- Banner Superior -->
         <div style="position: relative; width: 100%; height: 160px; background-color: #0f172a; overflow: hidden;">
           {% if artigo.foto %}
-            <img src="{{ artigo.foto.url }}" alt="{{ artigo.titulo }}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+          <img src="{{ artigo.foto.url }}" alt="{{ artigo.titulo }}"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
           {% else %}
-            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1e293b, #334155);"></div>
+          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1e293b, #334155);"></div>
           {% endif %}
-          
-          <span style="position: absolute; top: 10px; right: 10px; background-color: rgba(11, 15, 25, 0.85); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(4px);">
+
+          <span
+            style="position: absolute; top: 10px; right: 10px; background-color: rgba(11, 15, 25, 0.85); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(4px);">
             {{ artigo.get_nivel_display|default:"loja de fachada" }}
           </span>
         </div>
@@ -91,23 +103,26 @@
         <!-- Conteúdo do Card -->
         <div style="padding: 16px; display: flex; flex-direction: column; flex: 1;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <span style="color: #60a5fa; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;">
+            <span
+              style="color: #60a5fa; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;">
               {{ artigo.id_fk_eixo.nome|default:"MODA JOVEM" }}
             </span>
             <span style="color: #10b981; font-size: 0.72rem; font-weight: 600;">• Atendimento</span>
           </div>
 
-          <h5 style="color: #ffffff; font-size: 1.05rem; font-weight: 700; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          <h5
+            style="color: #ffffff; font-size: 1.05rem; font-weight: 700; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
             {{ artigo.titulo }}
           </h5>
-          
+
           <p style="color: #9ca3af; font-size: 0.8rem; margin: 0 0 16px 0;">
             📍 {{ artigo.id_fk_responsavel.nome|default:"Vanessa da Mata" }}
           </p>
 
           <!-- Botão WhatsApp -->
           <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid #1e2640;">
-            <a href="{% url 'detalhe_comercio' artigo.id %}" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 8px 12px; border-radius: 6px; box-sizing: border-box; width: 100%;">
+            <a href="{% url 'detalhe_comercio' artigo.id %}"
+              style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 8px 12px; border-radius: 6px; box-sizing: border-box; width: 100%;">
               <span>Ver Ofertas & WhatsApp</span>
               <span aria-hidden="true">→</span>
             </a>
