@@ -2,6 +2,31 @@ from django.shortcuts import render, get_object_or_404
 #from django.http import HttpResponse
 from motorartigos.models import Responsavel,Comercio,EixoTecnologia
 from django.db.models import Q # Importante para buscas complexas
+import os
+import subprocess
+from django.http import HttpResponse, HttpResponseForbidden
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+def update_server(request):
+    if request.method == 'POST':
+        # 1. Caminho absoluto da pasta do seu repositório no PythonAnywhere
+        # Exemplo: '/home/romulogato/prova' (baseado no caminho do seu terminal)
+        project_dir = '/home/romulogato/prova'
+        
+        # 2. Executa o git pull no repositório
+        subprocess.run(['git', '-C', project_dir, 'pull'], check=True)
+        
+        # 3. Caminho do arquivo WSGI para forçar o reload da aplicação no PythonAnywhere
+        # Substiua 'romulogato' se o nome de usuário da conta do PythonAnywhere for outro
+        wsgi_file = '/var/www/romulogato_pythonanywhere_com_wsgi.py'
+        subprocess.run(['touch', wsgi_file], check=True)
+        
+        return HttpResponse('Servidor atualizado com sucesso!', status=200)
+    
+    return HttpResponseForbidden('Método não permitido')
+
 
 
 def index(request):
